@@ -2,12 +2,12 @@ import asyncio
 from telethon import TelegramClient, events
 
 # Replace with your own values
-API_ID = 0
-API_HASH = ''
+API_ID = 'YOUR_API_ID'
+API_HASH = 'YOUR_API_HASH'
 TARGET_CHATS = []
 MY_CHATS = []
 
-bot = TelegramClient('anon', API_ID, API_HASH)
+bot = TelegramClient('anon', int(API_ID), API_HASH)
 
 @bot.on(events.NewMessage(incoming=True, chats=TARGET_CHATS))
 async def handler(event):
@@ -17,4 +17,5 @@ async def handler(event):
         await bot.send_message(int(c), msg.message, formatting_entities=msg.entities)
 
 with bot:
+    print('\n• Bot has started!\n(Press Ctrl + C to stop.)')
     bot.run_until_disconnected()
