@@ -14,6 +14,8 @@ async def handler(event):
     msg = event.message
     for c in MY_CHATS:
         await asyncio.sleep(0.5)
+        # Uncomment this line to send first line of text only
+        # msg.message = msg.message.split('\n')[0]
         await bot.send_message(int(c), msg.message, formatting_entities=msg.entities)
 
 with bot:
